@@ -27,11 +27,6 @@ resource "aws_s3_bucket" "terraform_state" {
   }
 }
 
-output "s3_bucket_arn" {
-  value       = aws_s3_bucket.terraform_state.arn
-  description = "The ARN of the Terraform state S3 bucket"
-}
-
 resource "aws_dynamodb_table" "terraform_locks" {
   name         = "terraform-up-and-running-locks"
   billing_mode = "PAY_PER_REQUEST"
@@ -41,11 +36,6 @@ resource "aws_dynamodb_table" "terraform_locks" {
     name = "LockID"
     type = "S"
   }
-}
-
-output "dynamodb_table_name" {
-  value       = aws_dynamodb_table.terraform_locks.name
-  description = "The name of the Terraform locks DynamoDB table"
 }
 
 terraform {
